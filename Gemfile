@@ -18,6 +18,11 @@ gem 'turbolinks'
 
 gem 'jbuilder', '~> 1.2'
 
+# Added rspec for testing
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+end
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
