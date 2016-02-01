@@ -156,11 +156,8 @@ DEPENDENCIES
   jquery-rails
   pg
   rails (= 4.0.1)
-<<<<<<< HEAD
   rails_12factor
-=======
   rspec-rails (~> 3.0)
->>>>>>> 44037bb2073c9937558ec1018b7bd4966e3bd8ee
   sass-rails (~> 4.0.0)
   sdoc
   sprockets (<= 2.11.0)
