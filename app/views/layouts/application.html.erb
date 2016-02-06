@@ -10,6 +10,8 @@
 </head>
 
 <body>
+  <%= render 'layouts/navbar' %>
+
   <%= render 'layouts/flash' %>
 
   <% if controller_name == 'static_pages' && action_name == 'index' %>  
@@ -17,7 +19,6 @@
     <%= render 'layouts/banner1' %>
     <%= render 'layouts/banner2' %> 
   <% end %>
-
 
   <div class="container">
     <%= yield %>

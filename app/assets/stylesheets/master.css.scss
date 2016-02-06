@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway);
+
 /*
 a { text-decoration: none; 
     color: #ffffff;
@@ -46,15 +47,22 @@ button {
 
 a.logo, a:visited.logo, a:active.logo {
 
-    font-family: 'Raleway', sans-serif;
+    
+    color: #424242;
+    font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+    letter-spacing:0.1em;
+    text-align:center;
+    text-transform: lowercase;
+    font-variant: small-caps;
+
     text-align: center;
     width: 240px;
     height: 20px;
     background: rgba(0, 0, 0, 0.05);
-    color: #c35352;
-    font-size: 23px;
+    color: #88c0ec;
+    font-size: 25px;
     padding: 14px 0 38px 0;
-    border: 5px solid #c35352;
+    border: 5px solid #88c0ec;
     margin: 20px 40px;
     line-height: 26px;
     letter-spacing: 1px;
@@ -63,6 +71,11 @@ a.logo, a:visited.logo, a:active.logo {
 
 a.logo {
     text-decoration: none;
+}
+
+a.logo.extra-blue {
+    color: #db0336;
+    border: 5px solid #db0336;
 }
 
 .clear {
@@ -118,3 +131,54 @@ div.center {
     text-align: center;
 }
 
+body { padding-top: 70px; }
+
+div.alert {
+    margin: 0;
+    text-align: center;
+}
+
+.algorithm-div {
+    color: black;
+    font-size: 20px;
+    background-color: rgba(0,0,0,0.1);
+}
+
+div#icon {
+  padding-left:10px;
+  padding-right:10px;
+  margin-left:10px;
+  margin-right:10px; 
+}
+
+div#icon a {
+    text-decoration: none;
+    color: #acd7f3;
+    font-family:Georgia,serif;
+    font-variant: small-caps; text-transform: none; font-weight: 100; margin-bottom: 0;
+    line-height: 47px;
+    font-size: 22px;
+}
+
+.navbar-nav.mid-nav > li{
+  padding-top: 8px;
+  padding-left: 50px;
+  padding-right: 20px;
+  margin-left: 30px;
+  margin-right: 0px;
+  letter-spacing: 1px;
+
+  font-family:Georgia,serif;
+  font-size: 17px;
+  color:#4E443C;
+  font-variant: small-caps; text-transform: none; font-weight: 100; margin-bottom: 0;
+
+}
+
+ul.nav.navbar-right {
+  padding-top: 8px;
+  font-family:Georgia,serif;
+  font-size: 18px;
+  color:#4E443C;
+  font-variant: small-caps; text-transform: none; font-weight: 100; margin-bottom: 0;
+}

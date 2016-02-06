@@ -1,4 +1,5 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
     <div class="navbar-header"> <!-- navbar-header displayed in smaller device  -->
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span> 
@@ -6,42 +7,52 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <%= link_to 'Chess Workout(?)',root_path, :class => 'navbar-brand active' %>
+        
+        <div id="icon">
+          <%= link_to root_path do %>
+            <%= image_tag('icon.jpg',size: '60x70',:class => 'icon-img fadeInDown animated') %>
+            Chess Workout
+          <% end %>
+        </div>
+
     </div> 
 
     <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li><%= link_to 'Code','/' %></li>
-        <li><%= link_to 'unknown', '/'%></li>
-        <li><%= link_to 'unknown', '/'%></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
-            Developers <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "person 1's Blog", '#' %></li>
-            <li><%= link_to "person 2's Blog", '#' %></li>
-            <li><%= link_to "person 3's Blog", '#' %></li>
-            <li><%= link_to "person 4's Blog", '#' %></li>
-            <li><%= link_to "person 5's Blog", '#' %></li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="alert" style="color: red"><b><%= alert %></b></li>
-        <% if user_signed_in? %>
+
+        <ul class="nav navbar-nav mid-nav">
+          <li><%= link_to 'Code','/' %></li>
+          <li><%= link_to 'unknown', '/'%></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user">&nbsp;</span><%= current_user.username %><span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+              Developers <b class="caret"></b>
+            </a>
             <ul class="dropdown-menu">
-              <li><%= link_to 'Dashboard', '#' %></li>
-              <li role="separator" class="divider"></li>
-              <li><%= link_to ' Sign Out', destroy_user_session_path, :method => :delete, :class => "fa fa-sign-out" %></li>
+              <li><%= link_to "person 1's Blog", '#' %></li>
+              <li><%= link_to "person 2's Blog", '#' %></li>
+              <li><%= link_to "person 3's Blog", '#' %></li>
+              <li><%= link_to "person 4's Blog", '#' %></li>
+              <li><%= link_to "person 5's Blog", '#' %></li>
             </ul>
           </li>
-        <% else %>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to ' Log In', new_user_session_path, :class => "fa fa-sign-in" %></li>
-        <% end %>
-      </ul>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="alert" style="color: red"><b><%= alert %></b></li>
+            <% if user_signed_in? %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user">&nbsp;</span><%= current_user.username %><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to 'Dashboard', '#' %></li>
+                  <li role="separator" class="divider"></li>
+                  <li><%= link_to ' Sign Out', destroy_user_session_path, :method => :delete, :class => "fa fa-sign-out" %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li><%= link_to 'Sign up', new_user_registration_path %></li>
+              <li><%= link_to ' Log In', new_user_session_path, :class => "fa fa-sign-in" %></li>
+            <% end %>
+        </ul>
+
     </div>
+  </div>
 </nav>
