@@ -45,3 +45,6 @@ gem 'sprockets', '<= 2.11.0'
 
 # Devise for authentication:
 gem "devise"
+
+#Use FactoryGirl
+gem "factory_girl_rails", "~> 4.0"
