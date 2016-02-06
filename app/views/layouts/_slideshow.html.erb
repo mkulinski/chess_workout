@@ -1,0 +1,65 @@
+ <div id="slideshow" class="carousel slide">
+    
+      <ol class="carousel-indicators">
+        <li data-target="#slideshow" data-slide-to="0" class="active"></li>
+        <li data-target="#slideshow" data-slide-to="1"></li>
+        <li data-target="#slideshow" data-slide-to="2"></li>
+      </ol>
+
+      <div class="carousel-inner">
+        <div class="item active">
+          <%= image_tag('wallpaper9.jpg',:id => 'bg') %>
+          <div class="container active">
+            <div class="carousel-caption">
+              <h1>Forget them biceps, how much reps can your brain do?</h1>
+              <p>Made by Firehose developers ..etc.. </p>
+              <div class="center">
+                    <p>
+                      <%= link_to 'Game Lobby', games_path,:class => 'logo hvr-grow' %>
+                    </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+         <div class="item">
+          <%= image_tag('wallpaper4.jpg',:id => 'bg') %>
+          <div class="container active">
+            <div class="carousel-caption">
+              <h1> Test Driven Development with Rspec </h1>
+              <p>Made by Firehose developers ..etc.. </p>
+               <div class="center">
+                <p>
+                  <%= link_to 'Game Lobby', games_path,:class => 'logo hvr-grow' %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <%= image_tag('wallpaper2.jpg',:id => 'bg') %>
+          <div class="container active">
+            <div class="carousel-caption">
+              <h1> Built with full-stack web framework Ruby on Rails  </h1>
+              <p>Made by Firehose developers ..etc.. </p>
+               <div class="center">
+                <p>
+                  <%= link_to 'Game Lobby', games_path,:class => 'logo hvr-grow' %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+
+      <a class="left carousel-control" href="#slideshow" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#slideshow" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+
+    </div>

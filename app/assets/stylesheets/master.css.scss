@@ -1,0 +1,120 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+/*
+a { text-decoration: none; 
+    color: #ffffff;
+}
+
+button {
+    margin: 50px;
+    text-align: center;
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 36px;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    text-transform: uppercase;
+    background: #009DDC;
+    letter-spacing: 1.3px;
+    border: none;
+}
+*/
+
+.carousel-caption {
+    z-index: 10;    
+}
+
+.carousel-inner > .item > img{
+      top: 0; 
+      left: 0; 
+      min-width: 100%;
+      min-height: 100%;
+}
+
+.carousel-inner > .item{
+    height: 600px;
+}
+
+
+@media(min-width: 768px){
+    .carousel-inner > .item{
+        height: 700px;
+    }
+}
+
+a.logo, a:visited.logo, a:active.logo {
+
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    width: 240px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.05);
+    color: #c35352;
+    font-size: 23px;
+    padding: 14px 0 38px 0;
+    border: 5px solid #c35352;
+    margin: 20px 40px;
+    line-height: 26px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+a.logo {
+    text-decoration: none;
+}
+
+.clear {
+    clear:both; 
+}
+
+.intro-box {
+    background: url('stardust.png');
+    padding: 100px 15px 60px;
+    color: #fff;
+}
+
+.intro-box2 {
+        background: url('1.jpg') repeat;
+        padding: 100px 15px 60px; 
+        height: 500px;
+        color: #fff;
+        background-color: #e9e6df;
+}
+
+.text-thin {
+    color: #e9e6df;
+    font-weight: 100;
+}
+
+.horse {
+    padding: 0px;
+} 
+
+.navbar {
+    background: url('argyle.png');
+}
+
+.col-xs-6 {
+    padding-right: 0px;
+    padding-top: 13px;
+}
+
+h1.tools {
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.tools_ptag:hover {
+    color:black;
+}
+
+hr {
+    border-top: 1px solid white;
+}
+
+div.center {
+    text-align: center;
+}
+

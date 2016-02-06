@@ -1,38 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ChessWorkout</title>
+  <title>Chess Workout</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
 
-<nav class="navbar navbar-inverse" role="navigation">
-  <div class="container-fluid">
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-          <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
-        <% else %>
-          <li><%= link_to 'Sign in', new_user_session_path %></li>
-          <li><%= link_to 'Sign up', new_user_registration_path %></li>
-        <% end %>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+  <%= render 'layouts/navbar' %>
 
-  <% if notice.present? %>
-    <p class="alert alert-info"><%= notice %></p>
+  <%= render 'layouts/flash' %>
+
+  <% if controller_name == 'static_pages' && action_name == 'index' %>  
+    <%= render 'layouts/slideshow' %>
+    <%= render 'layouts/banner1' %>
+    <%= render 'layouts/banner2' %> 
   <% end %>
 
-  <% if alert.present? %>
-    <p class="alert alert-danger"><%= alert %></p>
-  <% end %>
 
-<%= yield %>
+  <div class="container">
+    <%= yield %>
+  </div>
 
 </body>
 </html>
