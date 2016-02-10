@@ -6,12 +6,12 @@
   <%= f.submit 'Create Game', :class => "btn btn-success" %>
 <% end %>
 
-<% @game.each do |game| %>
+<% @games.each do |game| %>
   <hr />
   <%= link_to game_path(game.id) do %>
     <h3><%= "Game ID: #{game.id}" %></h3>
-    <h6><%= "White: #{game.white_user_id}" %></h6>
-    <h6><%= "Black: #{game.black_user_id}" %></h6>
+    <h6><%= "White: #{game.white_player_id}" %></h6>
+    <h6><%= "Black: #{game.black_player_id}" %></h6>
   <% end %>
   <br />
 <% end %>

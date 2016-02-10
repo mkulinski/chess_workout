@@ -2,6 +2,7 @@ class GamesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @game_new = Game.new
     @games = Game.all
   end
 
