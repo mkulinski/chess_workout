@@ -2,48 +2,6 @@ class Game < ActiveRecord::Base
 	has_many :pieces
 	has_and_belongs_to_many :users
 
-  # def self.create_game(current_user)
-  #   game = Game.create(:white_player_id => current_user.id)
-  #   # create 8 Pawns, 2 Rooks, 2 Bishops, etc... for each player
-  #   self.piece.create
-  #   # game.pieces.each do |piece|
-  #   #   # Placeholder
-  #   #   for i in 0..15
-  #   #     case i
-  #   #     when 0
-  #   #       piece = Rook.new
-  #   #     when 1
-  #   #       piece = Knight.new
-  #   #     # ...
-  #   #     end
-  #   #     piece.color = "white"
-  #   #     piece.x_position = "#{i}"
-  #   #     piece.y_position = "#{i}"
-  #   #     piece.captured = false
-  #   #   end
-  #   # end
-
-  #   # game.black_player_id.pieces.each do |piece|
-  #   #   # Placeholder
-  #   #   for i in 0..15
-  #   #     case i
-  #   #     when 0
-  #   #       piece = Rook.new
-  #   #     when 1
-  #   #       piece = Knight.new
-  #   #     # ...
-  #   #     end
-  #   #     piece.color = "black"
-  #   #     piece.x_position = "#{i}"
-  #   #     piece.y_position = "#{i}"
-  #   #     piece.captured = false
-  #   #   end
-  #   # end
-
-  #   # The white player makes the first move
-  #   game.turn = "white"
-  # end
-
   # Directly create pieces and add them to the pieces collection.
   def self.create_game
     game = Game.create
