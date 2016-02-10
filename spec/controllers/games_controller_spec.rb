@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 RSpec.describe GamesController, type: :controller do
   describe "Action: games#index" do
     it "should successfully show the index page" do
@@ -15,3 +16,4 @@ RSpec.describe GamesController, type: :controller do
     end
   end
 end
+
