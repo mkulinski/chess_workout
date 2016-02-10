@@ -20,6 +20,8 @@ gem 'turbolinks'
 
 gem 'jbuilder', '~> 1.2'
 
+gem 'pry-rails', :group => :development
+
 # Added rspec for testing
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'

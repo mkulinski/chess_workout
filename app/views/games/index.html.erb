@@ -1,8 +1,8 @@
 <h1>Welcome to the Games Lobby!</h1>
 
 <%= simple_form_for @game_new, :url => games_path, :method => :post do |f| %>
-  <%= f.input :white_user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
-  <%= f.input :black_user_id, :as => :hidden, :input_html => { :value => '' }  %>
+  <%= f.input :white_player_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+  <%= f.input :black_player_id, :as => :hidden, :input_html => { :value => '' }  %>
   <%= f.submit 'Create Game', :class => "btn btn-success" %>
 <% end %>
 
