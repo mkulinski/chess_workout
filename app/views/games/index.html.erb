@@ -10,7 +10,7 @@
   <hr />
   <%= link_to game_path(game.id) do %>
     <h3><%= "Game ID: #{game.id}" %></h3>
-    <h6><%= "White: #{game.white_player_id}" %></h6>
+    <h6><%= "White: #{@user.find_by_id(game.white_player_id).username}" %></h6>
     <h6><%= "Black: #{game.black_player_id}" %></h6>
   <% end %>
   <br />

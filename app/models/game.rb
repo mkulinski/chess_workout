@@ -3,8 +3,8 @@ class Game < ActiveRecord::Base
 	has_and_belongs_to_many :users
 
   # Directly create pieces and add them to the pieces collection.
-  def self.create_game
-    game = Game.create
+  def self.create_game(game_params)
+    game = Game.create(game_params)
 
     # Non-pawns for black player:
     black_rook1 = Rook.create(x_position: 0, y_position: 7)
