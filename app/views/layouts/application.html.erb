@@ -7,23 +7,16 @@
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 </head>
 
 <body>
   <%= render 'layouts/navbar' %>
-
   <%= render 'layouts/flash' %>
 
-  <% if controller_name == 'static_pages' && action_name == 'index' %>  
-    <%= render 'layouts/slideshow' %>
-    <%= render 'layouts/banner1' %>
-    <%= render 'layouts/banner2' %> 
-  <% end %>
-
-  <div class="container">
-    <%= yield %>
-  </div>
-
+  <%= yield %>
 
 </body>
 </html>

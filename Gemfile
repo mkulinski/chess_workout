@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'simple_form'
+
 gem 'rails', '4.0.1'
 
 gem 'pg'
@@ -17,6 +19,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 gem 'jbuilder', '~> 1.2'
+
+gem 'pry-rails', :group => :development
 
 # Added rspec for testing
 group :development, :test do
