@@ -1,4 +1,4 @@
-$piece_size: 60px;
+$piece_size: 80px;
 
 body {
   margin-top: 30px;
@@ -58,7 +58,7 @@ td, th {
   border-color: 1px black;
 }
 
-.dark_piece {
+.black_piece {
   background-color: rgb(31, 24, 9);
   color: white;
   border-color: 1px white;

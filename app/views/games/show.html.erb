@@ -1,77 +1,25 @@
-<%= "White King: yx = #{@white_king.y_position}#{@white_king.x_position}" %><br />
-<%= "White Queen: yx = #{@white_queen.y_position}#{@white_queen.x_position}" %><br />
-<%= "White Bishop1: yx = #{@white_bishop1.y_position}#{@white_bishop1.x_position}" %><br />
-<%= "White Bishop2: yx = #{@white_bishop2.y_position}#{@white_bishop2.x_position}" %><br />
-<%= "White Knight1: yx = #{@white_knight1.y_position}#{@white_knight1.x_position}" %><br />
-<%= "White Knight2: yx = #{@white_knight2.y_position}#{@white_knight2.x_position}" %><br />
-<%= "White Rook1: yx = #{@white_rook1.y_position}#{@white_rook1.x_position}" %><br />
-<%= "White Rook2: yx = #{@white_rook2.y_position}#{@white_rook2.x_position}" %><br />
-<%= "White Pawn1: yx = #{@white_pawn1.y_position}#{@white_pawn1.x_position}" %><br />
-<%= "White Pawn2: yx = #{@white_pawn2.y_position}#{@white_pawn2.x_position}" %><br />
-<%= "White Pawn3: yx = #{@white_pawn3.y_position}#{@white_pawn3.x_position}" %><br />
-<%= "White Pawn4: yx = #{@white_pawn4.y_position}#{@white_pawn4.x_position}" %><br />
-<%= "White Pawn5: yx = #{@white_pawn5.y_position}#{@white_pawn5.x_position}" %><br />
-<%= "White Pawn6: yx = #{@white_pawn6.y_position}#{@white_pawn6.x_position}" %><br />
-<%= "White Pawn7: yx = #{@white_pawn7.y_position}#{@white_pawn7.x_position}" %><br />
-<%= "White Pawn8: yx = #{@white_pawn8.y_position}#{@white_pawn8.x_position}" %><br />
 
-<%= "Black King: yx = #{@black_king.y_position}#{@black_king.x_position}" %><br />
-<%= "Black Queen: yx = #{@black_queen.y_position}#{@black_queen.x_position}" %><br />
-<%= "Black Bishop1: yx = #{@black_bishop1.y_position}#{@black_bishop1.x_position}" %><br />
-<%= "Black Bishop2: yx = #{@black_bishop2.y_position}#{@black_bishop2.x_position}" %><br />
-<%= "Black Knight1: yx = #{@black_knight1.y_position}#{@black_knight1.x_position}" %><br />
-<%= "Black Knight2: yx = #{@black_knight2.y_position}#{@black_knight2.x_position}" %><br />
-<%= "Black Rook1: yx = #{@black_rook1.y_position}#{@black_rook1.x_position}" %><br />
-<%= "Black Rook2: yx = #{@black_rook2.y_position}#{@black_rook2.x_position}" %><br />
-<%= "Black Pawn1: yx = #{@black_pawn1.y_position}#{@black_pawn1.x_position}" %><br />
-<%= "Black Pawn2: yx = #{@black_pawn2.y_position}#{@black_pawn2.x_position}" %><br />
-<%= "Black Pawn3: yx = #{@black_pawn3.y_position}#{@black_pawn3.x_position}" %><br />
-<%= "Black Pawn4: yx = #{@black_pawn4.y_position}#{@black_pawn4.x_position}" %><br />
-<%= "Black Pawn5: yx = #{@black_pawn5.y_position}#{@black_pawn5.x_position}" %><br />
-<%= "Black Pawn6: yx = #{@black_pawn6.y_position}#{@black_pawn6.x_position}" %><br />
-<%= "Black Pawn7: yx = #{@black_pawn7.y_position}#{@black_pawn7.x_position}" %><br />
-<%= "Black Pawn8: yx = #{@black_pawn8.y_position}#{@black_pawn8.x_position}" %><br />
-
+<br />
 <div class="container-fluid">
   <h1><%= "Game ID: #{@game.id}" %></h1>
   <br />
   <div class="col-xs-6">
     <table class="board" id="chessboard">
-      <% 8.times do |i| %>
+      <% (1..8).each do |row| %>
         <tr>
-          <% 8.times do |j| %>
-            <% sq_color = (i + j).even? ? 'white_sq' : 'dark_sq' %>
-            <td id="<%= "#{i + 1}#{j + 1}" %>" class="<%= sq_color %>"></td>
+          <% (1..8).each do |col| %>
+            <% sq_color = (row + col).even? ? 'white_sq' : 'dark_sq' %>
+            <td id="<%= "#{row}#{col}" %>" class="<%= sq_color %>">
+              <% piece = @game.pieces.where(:x_position => col.to_s, :y_position => row.to_s).first %>
+              <% if piece %>
+                <div class="piece <%= piece.color %>_piece" id="<%= piece.color %>-<%= piece.type %>"><strong><%= piece.type %></strong></div>
+              <% end %>
+            </td>
           <% end %>
         </tr>
       <% end %>
     </table>
-
-    <!-- Initialize White Pieces -->
-    <div id="white_king" class="piece white_piece">Kg</div>
-    <div id="white_queen" class="piece white_piece">Qn</div>
-    <% 2.times do |n| %>
-      <div id="white_bishop<%= n + 1 %>" class="piece white_piece">Bp</div>
-      <div id="white_knight<%= n + 1 %>" class="piece white_piece">Kt</div>
-      <div id="white_rook<%= n + 1 %>" class="piece white_piece">Rk</div>
-    <% end %>
-    <% 8.times do |n| %>
-      <div id="white_pawn<%= n + 1 %>" class="piece white_piece">Pn</div>
-    <% end %>
-
-    <!-- Initialize Dark Pieces rgb(31, 24, 9)-->
-    <div id="dark_king" class="piece dark_piece">Kg</div>
-    <div id="dark_queen" class="piece dark_piece">Qn</div>
-    <% 2.times do |n| %>
-      <div id="dark_bishop<%= n + 1 %>" class="piece dark_piece">Bp</div>
-      <div id="dark_knight<%= n + 1 %>" class="piece dark_piece">Kt</div>
-      <div id="dark_rook<%= n + 1 %>" class="piece dark_piece">Rk</div>
-    <% end %>
-    <% 8.times do |n| %>
-      <div id="dark_pawn<%= n + 1 %>" class="piece dark_piece">Pn</div>
-    <% end %>
   </div>
-
   <div class="col-xs-12 col-md-6">
     <div class="moves_record">
         <h5>Moves Record</h5>
