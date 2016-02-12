@@ -4,6 +4,8 @@ class Pawn < Piece
   @possible_moves = []
 
   # How to set the new_x_position and new_y_position properties?  Grab them from the games#show page with an html data attribute using JavaScript?
+  # games#show page has table.board > tr > td#id
+  # *** Check the Flixter app to see how to do this! ***
   self.new_x_position = ?....
   self.new_y_position = ?....
 
@@ -18,6 +20,7 @@ class Pawn < Piece
     if !self.outside_board? && (!self.is_blocked? || self.is_capturing?)
       # Specific check for pawns.  There are three potentially legal pawn moves:
       # We need a way to check for the current active player, because a pawn can be moved two spaces on a starting player's turn.  Is there a way to link the black_player_id or the white_player_id to the current turn?
+      # *** Instead of checking for player's first turn, check if pawn is on starting position for moving 2 spaces. ***
       if distance_y == 1 || (distance_y == 2 && @game.current_player.turn == 1) || en_passant?
         @possible_moves << [self.new_x_position, self.new_y_position]
       end
