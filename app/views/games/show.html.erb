@@ -10,7 +10,7 @@
           <% (1..8).each do |col| %>
             <% sq_color = (row + col).even? ? 'white_sq' : 'dark_sq' %>
             <td id="<%= "#{row}#{col}" %>" class="<%= sq_color %>">
-              <% piece = @game.pieces.where(:x_position => col.to_s, :y_position => row.to_s).first %>
+              <% piece = @game.pieces.where(:x_position => col, :y_position => row).first %>
               <% if piece %>
                 <div class="piece <%= piece.color %>_piece" id="<%= piece.color %>-<%= piece.type %>"><strong><%= piece.type %></strong></div>
               <% end %>
