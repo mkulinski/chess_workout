@@ -1,14 +1,18 @@
 class Game < ActiveRecord::Base
 	has_many :pieces
-	has_and_belongs_to_many :users
+  # The associations below will enable us to use game.white_player, game.black_player:
+  belongs_to :white_player, class_name: "User", foreign_key: :white_player_id
+  belongs_to :black_player, class_name: "User", foreign_key: :black_player_id
 
   # Directly create pieces and add them to the pieces collection.
   def self.create_game(game_params)
     game = Game.create(game_params)
+    white_player = Player.find(game_params[:white_player_id])
 
     # Non-pawns for white player:
-    white_rook1 = Rook.create(color: "white", x_position: 1, y_position: 8)
-    game.pieces << white_rook1
+    # Associate each of the pieces with a user:
+    Rook.create(color: "white", x_position: 1, y_position: 8, game_id: game.id, player_id: white_player_id)
+    # game.pieces << white_rook1
     white_knight1 = Knight.create(color: "white", x_position: 2, y_position: 8)
     game.pieces << white_knight1
     white_bishop1 = Bishop.create(color: "white", x_position: 3, y_position: 8)
@@ -48,7 +52,7 @@ class Game < ActiveRecord::Base
       game.pieces << Pawn.create(color: "black", x_position: i, y_position: 1)
     end
 
-    # The white player makes the first move
+    # The white player makes the first move:
     game.turn = "white"
 
     return game
