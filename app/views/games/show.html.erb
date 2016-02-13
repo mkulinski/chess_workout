@@ -1,13 +1,15 @@
 
 <br />
-<div class="container-fluid">
+<!-- <% player_color = "black" if @game.black_player == current_user %> -->
+<div id="<%= player_color %>" class="container-fluid">
   <h1><%= "Game ID: #{@game.id}" %></h1>
   <br />
   <div class="col-xs-6">
     <table class="board" id="chessboard">
-      <% (1..8).each do |row| %>
+      <% @game.black_player == current_user ? (index = 8.downto(1)) : (index = (1..8)) %>
+      <% index.each do |row| %>
         <tr>
-          <% (1..8).each do |col| %>
+          <% index.each do |col| %>
             <% sq_color = (row + col).even? ? 'white_sq' : 'dark_sq' %>
             <td id="<%= "#{row}#{col}" %>" class="<%= sq_color %>">
               <% piece = @game.pieces.where(:x_position => col, :y_position => row).first %>

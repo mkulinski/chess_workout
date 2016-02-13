@@ -3,6 +3,20 @@ $(function() {
 });
 $(window).bind('page:change', function() {
   initPage();
+  $("#reverse_view").on("click", function() {
+    // Reverse board columns
+    $("tr").each(function(elem, index) {
+      var arr_cols = $.makeArray($("td", this).detach());
+      arr_cols.reverse();
+      $(this).append(arr_cols);
+    });
+    // Reverse board rows
+    $("tbody").each(function(elem, index) {
+      var arr_rows = $.makeArray($("tr", this).detach());
+      arr_rows.reverse();
+      $(this).append(arr_rows);
+    });
+  });
 });
 
 function initPage() {
@@ -16,7 +30,6 @@ function initPage() {
 
   var top_z = 100;
   var start_sq = 99;
-
 
   $('.piece').draggable({
     cursor: "pointer",
@@ -97,18 +110,4 @@ function initPage() {
         });
   };
 
-  $("#reverse_view").on("click", function() {
-    // Reverse board columns
-    $("tr").each(function(elem, index) {
-      var arr_cols = $.makeArray($("td", this).detach());
-      arr_cols.reverse();
-      $(this).append(arr_cols);
-    });
-    // Reverse board rows
-    $("tbody").each(function(elem, index) {
-      var arr_rows = $.makeArray($("tr", this).detach());
-      arr_rows.reverse();
-      $(this).append(arr_rows);
-    });
-  });
 }

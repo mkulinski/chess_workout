@@ -22,10 +22,19 @@ class GamesController < ApplicationController
     end
   end
 
+  def update
+    current_game.update_attributes(game_params)
+    redirect_to game_path(current_game)
+  end
+
   private
 
   def game_params
     params.require(:game).permit(:white_player_id, :black_player_id, :turn, :winner)
+  end
+
+  def current_game
+    @current_game ||= Game.find(params[:id])
   end
 
   def render_not_found(status=:not_found)

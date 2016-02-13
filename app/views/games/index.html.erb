@@ -9,10 +9,20 @@
 <% @games.each do |game| %>
   <hr />
   <%= link_to game_path(game.id) do %>
-    <h3><%= "Game ID: #{game.id}" %></h3>
-    <% if game.white_player_id.present? && game.black_player_id.present? %>
-      <h6><%= "White: #{@user.find_by_id(game.white_player_id).username}" %></h6>
-      <h6><%= "Black: #{game.black_player_id}" %></h6>
+    <h3><%= "View Game ID: #{game.id}" %></h3>
+  <% end %>
+  <% if game.white_player_id.present? %>
+    <h6><%= "White: #{@user.find_by_id(game.white_player_id).username}" %></h6>
+  <% end %>
+  <% if game.black_player_id.present? %>
+    <h6><%= "Black: #{@user.find_by_id(game.black_player_id).username}" %></h6>
+  <% else %>
+    <h6>Black: </h6>
+    <% if current_user != game.white_player %>
+      <%= simple_form_for game, :url => game_path(game), :method => :put do |f| %>
+        <%= f.input :black_player_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+        <%= f.submit 'Play as black', :class => "btn btn-primary" %>
+      <% end %>
     <% end %>
   <% end %>
   <br />
