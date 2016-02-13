@@ -82,6 +82,13 @@ function initPage() {
     $(this).addClass("moved_sq");
 
     $("#moves").prepend("<li>" + ui.draggable.attr("id") + ": " + start_sq + " --> " + this.id + "</li>");
+
+    $.ajax({
+          type: 'PUT',
+          url: ui.draggable.data('piece-url'),
+          dataType: 'json',
+          data: { x_position: Number(this.id.charAt(1)), y_position: Number(this.id.charAt(0)) }
+        });
   };
 
   $("#reverse_view").on("click", function() {
