@@ -14,7 +14,8 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Game.create(game_params)
+    defaults = {turn: 1}
+    @game = Game.create(defaults.merge(game_params))
     if @game.valid?
       redirect_to game_path(@game)
     else
