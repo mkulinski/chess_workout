@@ -2,7 +2,9 @@ class GamesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @game_new = Game.new
     @games = Game.all
+    @user = User.all
   end
 
   def show
@@ -12,8 +14,7 @@ class GamesController < ApplicationController
   end
 
   def create
-    # @game = Game.create(game_params)
-    @game = Game.create_game
+    @game = Game.create(game_params)
     if @game.valid?
       redirect_to game_path(@game)
     else

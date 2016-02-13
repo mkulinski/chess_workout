@@ -1,3 +1,65 @@
-// Place all the styles related to the games controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$piece_size: 80px;
+
+body {
+  margin-top: 30px;
+}
+
+.moves_record {
+  border: 1px solid black;
+  text-align: center;
+  height: 200px;
+  overflow-y: scroll
+}
+
+#captured {
+  border: 1px solid black;
+}
+
+.board, td, th {
+  border: 1px solid black;
+}
+
+.board {
+  border-spacing: 0;
+  border: 3px grey;
+  border-style: outset;
+}
+
+td, th {
+  height: $piece_size + 6px;
+  width: $piece_size;
+  padding: 0;
+}
+
+.white_sq {
+  background-color: white;
+}
+
+.dark_sq {
+  background-color: rgb(113, 97, 72);
+}
+
+.moved_sq {
+  background-color: rgb(23, 255, 54);
+}
+
+.piece {
+  border-radius: 50%;
+  width: $piece_size;
+  line-height: $piece_size;
+  text-align: center;
+  margin: 0;
+  border-style: double;
+  display: inline-block;
+}
+
+.white_piece {
+  background-color: rgb(189, 168, 92);
+  border-color: 1px black;
+}
+
+.black_piece {
+  background-color: rgb(31, 24, 9);
+  color: white;
+  border-color: 1px white;
+}

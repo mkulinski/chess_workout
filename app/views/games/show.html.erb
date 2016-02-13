@@ -1,8 +1,39 @@
-<h1>Placeholder text to represent a chess game</h1>
 
-<% @game.pieces.each do |piece| %>
-   <%= piece.x_position %>, <%= piece.y_position %>
-   <br>
-<% end %>
-<p>Game turn: </p>
-<%= @game.turn %>
+<br />
+<div class="container-fluid">
+  <h1><%= "Game ID: #{@game.id}" %></h1>
+  <br />
+  <div class="col-xs-6">
+    <table class="board" id="chessboard">
+      <% (1..8).each do |row| %>
+        <tr>
+          <% (1..8).each do |col| %>
+            <% sq_color = (row + col).even? ? 'white_sq' : 'dark_sq' %>
+            <td id="<%= "#{row}#{col}" %>" class="<%= sq_color %>">
+              <% piece = @game.pieces.where(:x_position => col, :y_position => row).first %>
+              <% if piece %>
+                <div class="piece <%= piece.color %>_piece" id="<%= piece.color %>-<%= piece.type %>"><strong><%= piece.type %></strong></div>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <div class="moves_record">
+        <h5>Moves Record</h5>
+        <ol reversed id="moves"></ol>
+    </div>
+
+    <div class="capture_box">
+      <h5>Captured</h5>
+      <span id="white_captured"></span>
+      <br />
+      <span id="dark_captured"></span>
+      <br />
+    </div>
+  </div>
+  <br />
+  <button type="button" id="reverse_view">Reverse View</button>
+</div>
