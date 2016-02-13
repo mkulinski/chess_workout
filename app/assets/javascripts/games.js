@@ -8,6 +8,12 @@ $(window).bind('page:change', function() {
 function initPage() {
   "use strict";
 
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
   var top_z = 100;
   var start_sq = 99;
 
@@ -87,7 +93,7 @@ function initPage() {
           type: 'PUT',
           url: ui.draggable.data('piece-url'),
           dataType: 'json',
-          data: { x_position: Number(this.id.charAt(1)), y_position: Number(this.id.charAt(0)) }
+          data: { piece: {x_position: Number(this.id.charAt(1)), y_position: Number(this.id.charAt(0))} }
         });
   };
 
