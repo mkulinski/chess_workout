@@ -33,6 +33,10 @@ class Game < ActiveRecord::Base
       Pawn.create(color: "black", x_position: i, y_position: 2, game_id: id, player_id: black_player_id)
       Pawn.create(color: "white", x_position: i, y_position: 7, game_id: id, player_id: white_player_id)
     end
-
   end
+
+	def self.join_as_black(game, user)
+		game.update_attributes(black_player_id: user.id)
+		game.pieces.where(color: "black").join_as_black(game, user)
+	end
 end
