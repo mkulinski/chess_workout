@@ -9,7 +9,7 @@ class Game < ActiveRecord::Base
     # Non-pawns for black player:
     Rook.create(x_position: 1, y_position: 1, game_id: id, color: "black", player_id: black_player_id)
     Knight.create(x_position: 2, y_position: 1, game_id: id, color: "black", player_id: black_player_id)
-    Bishop.create(x_position: 3, y_position: 1, game_id: id, color: "black", player_id: black_player_id)    
+    Bishop.create(x_position: 3, y_position: 1, game_id: id, color: "black", player_id: black_player_id)
     Queen.create(x_position: 4, y_position: 1, game_id: id, color: "black", player_id: black_player_id)
     King.create(x_position: 5, y_position: 1, game_id: id, color: "black", player_id: black_player_id)
     Bishop.create(x_position: 6, y_position: 1, game_id: id, color: "black", player_id: black_player_id)
@@ -23,7 +23,7 @@ class Game < ActiveRecord::Base
     Queen.create(x_position: 4, y_position: 8, game_id: id, color: "white", player_id: white_player_id)
     King.create(x_position: 5, y_position: 8, game_id: id, color: "white", player_id: white_player_id)
     Bishop.create(x_position: 6, y_position: 8, game_id: id, color: "white", player_id: white_player_id)
-    Knight.create(x_position: 7, y_position: 8, game_id: id, color: "white", player_id: white_player_id)    
+    Knight.create(x_position: 7, y_position: 8, game_id: id, color: "white", player_id: white_player_id)
     Rook.create(x_position: 8, y_position: 8, game_id: id, color: "white", player_id: white_player_id)
 
     # Pawns for both players:
@@ -31,7 +31,10 @@ class Game < ActiveRecord::Base
       Pawn.create(color: "black", x_position: i, y_position: 2, game_id: id, player_id: black_player_id)
       Pawn.create(color: "white", x_position: i, y_position: 7, game_id: id, player_id: white_player_id)
     end
-
-
   end
+
+	def self.join_as_black(game, user)
+		game.update_attributes(black_player_id: user.id)
+		game.pieces.where(color: "black").join_as_black(game, user)
+	end
 end
