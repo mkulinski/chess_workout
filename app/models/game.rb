@@ -1,8 +1,10 @@
 class Game < ActiveRecord::Base
-	has_many :pieces
-    belongs_to :white_player, class_name: 'User', foreign_key: :white_player_id
-    belongs_to :black_player, class_name: 'User', foreign_key: :black_player_id
-    after_create :initialize_board
+  has_many :pieces
+  # The associations below will enable us to use game.white_player, game.black_player:
+
+  belongs_to :white_player, class_name: 'User', foreign_key: :white_player_id
+  belongs_to :black_player, class_name: 'User', foreign_key: :black_player_id
+  after_create :initialize_board
 
   # Directly create pieces and add them to the pieces collection.
   def initialize_board
