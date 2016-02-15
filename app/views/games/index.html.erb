@@ -1,8 +1,6 @@
 <h1>Welcome to the Games Lobby!</h1>
 
 <%= simple_form_for @game_new, :url => games_path, :method => :post do |f| %>
-  <%= f.input :white_player_id, :as => :hidden, :input_html => { :value => current_user.id } %>
-  <%= f.input :black_player_id, :as => :hidden, :input_html => { :value => '' }  %>
   <%= f.submit 'Create Game', :class => "btn btn-success" %>
 <% end %>
 
@@ -19,8 +17,7 @@
   <% else %>
     <h6>Black: </h6>
     <% if current_user != game.white_player %>
-      <%= simple_form_for game, :url => game_path(game), :method => :put do |f| %>
-        <%= f.input :black_player_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+      <%= simple_form_for game, :url => join_game_path(game), :method => :put do |f| %>
         <%= f.submit 'Play as black', :class => "btn btn-primary" %>
       <% end %>
     <% end %>

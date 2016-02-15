@@ -14,8 +14,8 @@ class GamesController < ApplicationController
   end
 
   def create
-    defaults = {turn: 1}
-    @game = Game.create(defaults.merge(game_params))
+    defaults = {white_player_id: current_user.id ,turn: 1}
+    @game = Game.create(defaults)
     if @game.valid?
       redirect_to game_path(@game)
     else
@@ -28,11 +28,18 @@ class GamesController < ApplicationController
     redirect_to game_path(current_game)
   end
 
+  def join_game
+    if current_game.black_player_id == nil
+      Game.join_as_black(current_game, current_user)
+    end
+    redirect_to game_path(current_game)
+  end
+
   private
 
-  def game_params
-    params.require(:game).permit(:white_player_id, :black_player_id, :turn, :winner)
-  end
+  # def game_params
+  #   params.require(:game).permit(:white_player_id, :black_player_id, :turn, :winner)
+  # end
 
   def current_game
     @current_game ||= Game.find(params[:id])
