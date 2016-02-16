@@ -30,8 +30,14 @@ function initPage() {
 
   var top_z = 100;
   var start_sq = 99;
+  var pieceColor = '';
 
-  $('.piece').draggable({
+  if (userID == whiteID) {
+    pieceColor = 'white_piece'
+  } else {
+    pieceColor = 'black_piece'
+  };
+  $('.' + pieceColor).draggable({
     cursor: "pointer",
     containment: ".board",
     snap: ".board td",
@@ -52,6 +58,26 @@ function initPage() {
     drop: handleDrop
   });
 
+  function revertAnimate(ui, oldPosition, speed){
+    var newPosition = ui.draggable.offset();
+    var leftOffset = null;
+    var topOffset = null;
+    if (oldPosition.left > newPosition.left) {
+      leftOffset = (oldPosition.left - newPosition.left);
+    } else {
+      leftOffset = -(newPosition.left - oldPosition.left);
+    }
+    if (oldPosition.top > newPosition.top) {
+      topOffset = (oldPosition.top - newPosition.top);
+    } else {
+      topOffset = -(newPosition.top - oldPosition.top);
+    }
+    ui.draggable.animate({
+      left: '+=' + leftOffset,
+      top: '+=' + topOffset,
+    }, speed)
+  };
+
   function handleDrop(event, ui) {
     if (this.id != start_sq) {
       $.ajax({
@@ -61,25 +87,8 @@ function initPage() {
         dataType: 'json',
         data: { piece: {x_position: Number(this.id.charAt(1)), y_position: Number(this.id.charAt(0))} },
         error: function(){
-          alert("error");
           var oldPosition = ui.draggable.data().oldPosition;
-          var newPosition = ui.draggable.offset();
-          var leftOffset = null;
-          var topOffset = null;
-          if (oldPosition.left > newPosition.left) {
-            leftOffset = (oldPosition.left - newPosition.left);
-          } else {
-            leftOffset = -(newPosition.left - oldPosition.left);
-          }
-          if (oldPosition.top > newPosition.top) {
-            topOffset = (oldPosition.top - newPosition.top);
-          } else {
-            topOffset = -(newPosition.top - oldPosition.top);
-          }
-          ui.draggable.animate({
-            left: '+=' + leftOffset,
-            top: '+=' + topOffset,
-          }, 'slow')
+          revertAnimate(ui, oldPosition, 'fast');
           return;
         },
         success: function(){
@@ -90,34 +99,14 @@ function initPage() {
             $(this).find(".piece").appendTo("#dark_captured");
           }
           $(this).empty();
-          var targetDIV = document.getElementById('targetDIV');
-          var dropTarget = $(this);
           ui.draggable.draggable("option", "revert", false);
           var oldPosition = ui.draggable.offset();
           $(ui.draggable).appendTo(this);
-          var newPosition = ui.draggable.offset();
-          var leftOffset = null;
-          var topOffset = null;
-          if (oldPosition.left > newPosition.left) {
-            leftOffset = (oldPosition.left - newPosition.left);
-          } else {
-            leftOffset = -(newPosition.left - oldPosition.left);
-          }
-          if (oldPosition.top > newPosition.top) {
-            topOffset = (oldPosition.top - newPosition.top);
-          } else {
-            topOffset = -(newPosition.top - oldPosition.top);
-          }
-          ui.draggable.animate({
-            left: '+=' + leftOffset,
-            top: '+=' + topOffset,
-          }, 0)
+          revertAnimate(ui, oldPosition, 0);
           ui.draggable.draggable("option", "revert", true);
           $("#" + start_sq).addClass("moved_sq");
           $(this).addClass("moved_sq");
           $("#moves").prepend("<li>" + ui.draggable.attr("id") + ": " + start_sq + " --> " + this.id + "</li>");
-          // window.location.reload();
-          ui.draggable.draggable("option", "revert", false);
         }
       })
     } else {

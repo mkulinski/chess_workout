@@ -4,16 +4,15 @@ class PiecesController < ApplicationController
   before_action :authenticate_user!
   before_action :require_authorized_for_current_game, only: [:update]
   before_action :require_authorized_for_current_piece, only: [:update]
+  before_action :your_turn?, only: [:update]
 
   def update
     # if move is valid. Call back methods from model.
-    if Game.your_turn?(current_game, current_piece)
       current_piece.update_attributes(piece_params)
       Game.next_turn(current_game)
       respond_to do |format|
         format.js { render json: {success: true, status: :success} }
       end
-    end
   end
 
   private
@@ -40,5 +39,9 @@ class PiecesController < ApplicationController
     if current_game.white_player != current_user && current_game.black_player != current_user
       render text: 'Unauthorized', status: :unauthorized
     end
+  end
+
+  def your_turn?
+    render text: 'Unauthorized', status: :unauthorized unless Game.your_turn?(current_game, current_piece)
   end
 end
