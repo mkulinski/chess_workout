@@ -17,6 +17,9 @@ $(window).bind('page:change', function() {
       $(this).append(arr_rows);
     });
   });
+  // setInterval(function(){
+  //   window.location.reload();
+  // }, 5000)
 });
 
 function initPage() {
