@@ -106,7 +106,14 @@ function initPage() {
           type: 'PUT',
           url: ui.draggable.data('piece-url'),
           dataType: 'json',
-          data: { piece: {x_position: Number(this.id.charAt(1)), y_position: Number(this.id.charAt(0))} }
+          data: { piece: {x_position: Number(this.id.charAt(1)), y_position: Number(this.id.charAt(0))} },
+          error: function(){
+            alert("error");
+            window.location.reload();
+          },
+          success: function(){
+            alert("success");
+          }
         });
   };
 
