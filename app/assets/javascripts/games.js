@@ -38,6 +38,7 @@ function initPage() {
     snapTolerance: 20,
     revert: "invalid",
     start: function() {
+      $(this).data("oldPosition", $(this).offset());
       start_sq = this.closest("td").id;
     }
   }).on("mousedown", function() {
@@ -52,69 +53,75 @@ function initPage() {
   });
 
   function handleDrop(event, ui) {
-    $(".board td").removeClass("moved_sq");
     if (this.id != start_sq) {
-      if ($(this).find(".piece").hasClass("white_piece")) {
-        $(this).find(".piece").appendTo("#white_captured");
-      } else {
-        $(this).find(".piece").appendTo("#dark_captured");
-      }
-      $(this).empty();
+      $.ajax({
+        context: this,
+        type: 'PUT',
+        url: ui.draggable.data('piece-url'),
+        dataType: 'json',
+        data: { piece: {x_position: Number(this.id.charAt(1)), y_position: Number(this.id.charAt(0))} },
+        error: function(){
+          alert("error");
+          var oldPosition = ui.draggable.data().oldPosition;
+          var newPosition = ui.draggable.offset();
+          var leftOffset = null;
+          var topOffset = null;
+          if (oldPosition.left > newPosition.left) {
+            leftOffset = (oldPosition.left - newPosition.left);
+          } else {
+            leftOffset = -(newPosition.left - oldPosition.left);
+          }
+          if (oldPosition.top > newPosition.top) {
+            topOffset = (oldPosition.top - newPosition.top);
+          } else {
+            topOffset = -(newPosition.top - oldPosition.top);
+          }
+          ui.draggable.animate({
+            left: '+=' + leftOffset,
+            top: '+=' + topOffset,
+          }, 'slow')
+          return;
+        },
+        success: function(){
+          $(".board td").removeClass("moved_sq");
+          if ($(this).find(".piece").hasClass("white_piece")) {
+            $(this).find(".piece").appendTo("#white_captured");
+          } else {
+            $(this).find(".piece").appendTo("#dark_captured");
+          }
+          $(this).empty();
+          var targetDIV = document.getElementById('targetDIV');
+          var dropTarget = $(this);
+          ui.draggable.draggable("option", "revert", false);
+          var oldPosition = ui.draggable.offset();
+          $(ui.draggable).appendTo(this);
+          var newPosition = ui.draggable.offset();
+          var leftOffset = null;
+          var topOffset = null;
+          if (oldPosition.left > newPosition.left) {
+            leftOffset = (oldPosition.left - newPosition.left);
+          } else {
+            leftOffset = -(newPosition.left - oldPosition.left);
+          }
+          if (oldPosition.top > newPosition.top) {
+            topOffset = (oldPosition.top - newPosition.top);
+          } else {
+            topOffset = -(newPosition.top - oldPosition.top);
+          }
+          ui.draggable.animate({
+            left: '+=' + leftOffset,
+            top: '+=' + topOffset,
+          }, 0)
+          ui.draggable.draggable("option", "revert", true);
+          $("#" + start_sq).addClass("moved_sq");
+          $(this).addClass("moved_sq");
+          $("#moves").prepend("<li>" + ui.draggable.attr("id") + ": " + start_sq + " --> " + this.id + "</li>");
+          // window.location.reload();
+          ui.draggable.draggable("option", "revert", false);
+        }
+      })
     } else {
       return;
     }
-
-    var targetDIV = document.getElementById('targetDIV');
-    var dropTarget = $(this);
-
-    ui.draggable.draggable("option", "revert", false);
-
-    var oldPosition = ui.draggable.offset();
-
-    $(ui.draggable).appendTo(this);
-
-    var newPosition = ui.draggable.offset();
-
-    var leftOffset = null;
-    var topOffset = null;
-
-    if (oldPosition.left > newPosition.left) {
-      leftOffset = (oldPosition.left - newPosition.left);
-    } else {
-      leftOffset = -(newPosition.left - oldPosition.left);
-    }
-
-    if (oldPosition.top > newPosition.top) {
-      topOffset = (oldPosition.top - newPosition.top);
-    } else {
-      topOffset = -(newPosition.top - oldPosition.top);
-    }
-
-    ui.draggable.animate({
-      left: '+=' + leftOffset,
-      top: '+=' + topOffset,
-    }, 0)
-
-    ui.draggable.draggable("option", "revert", true);
-
-    $("#" + start_sq).addClass("moved_sq");
-    $(this).addClass("moved_sq");
-
-    $("#moves").prepend("<li>" + ui.draggable.attr("id") + ": " + start_sq + " --> " + this.id + "</li>");
-
-    $.ajax({
-          type: 'PUT',
-          url: ui.draggable.data('piece-url'),
-          dataType: 'json',
-          data: { piece: {x_position: Number(this.id.charAt(1)), y_position: Number(this.id.charAt(0))} },
-          error: function(){
-            alert("error");
-            window.location.reload();
-          },
-          success: function(){
-            alert("success");
-          }
-        });
   };
-
 }
