@@ -1,9 +1,11 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway);
 
+body {
+  padding-top: 65px;
+}
 .create_game {
   text-decoration: none !important;
 }
-
-@import url(https://fonts.googleapis.com/css?family=Raleway);
 
 .carousel-caption {
   z-index: 10;
@@ -18,13 +20,6 @@
 
 .carousel-inner > .item{
   height: 600px;
-}
-
-
-@media(min-width: 768px){
-  .carousel-inner > .item{
-    height: 700px;
-  }
 }
 
 a:link {
@@ -159,4 +154,39 @@ ul.nav.navbar-right {
   font-size: 18px;
   color:#4E443C;
   font-variant: small-caps; text-transform: none; font-weight: 100; margin-bottom: 0;
+}
+#reverse_view {
+  display: block;
+  margin: 0 auto;
+}
+.moves_record {
+  margin: 0 auto;
+}
+@media(min-width: 768px){
+  .carousel-inner > .item{
+    height: 700px;
+  }
+}
+@media(max-width: 991px){
+  .games-page h1 {
+    padding-left: 10px;
+  }
+  .moves-area{
+    max-width: 653px;
+    margin-top: 20px;
+  }
+  #reverse_view {
+    width: 100%;
+    max-width: 633px;
+    margin-left: 10px;
+  }
+}
+@media(max-width: 1200px){
+  .moves-area {
+    margin: 0 auto;
+  }
+  #reverse_view{
+    width: 100%;
+    max-width: 633px;
+  }
 }
